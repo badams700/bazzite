@@ -1,5 +1,5 @@
 ### Based on bazzite-nvidia-open (KDE Desktop)
-### Mainly for my personal use with some programs/KDE customizations added.
+Mainly for my personal use with some programs/KDE customizations added.
 
 #### Rebase to this image from Bazzite (KDE Desktop) or Fedora Kinoite
 ```
