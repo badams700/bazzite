@@ -9,7 +9,7 @@ rpm-ostree rebase ostree-image-signed:docker://ghcr.io/badams700/bazzite:latest
 ### KDE Window Blur Rules
 ```
 cd ~/Projects
-wget https://raw.githubusercontent.com/badams700/bazzite/extra/blur.kwinrule
+wget https://raw.githubusercontent.com/badams700/bazzite/main/extra/blur.kwinrule
 ```
 
 ### To install all Flatpaks:
