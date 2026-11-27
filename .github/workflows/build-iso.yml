@@ -27,6 +27,10 @@ jobs:
         with:
           remove-codeql: true
 
+      - name: Pull image
+        run: |
+          sudo podman pull ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}
+
       - name: Build ISO
         id: build
         uses: ublue-os/titanoboa@main
