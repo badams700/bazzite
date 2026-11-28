@@ -59,9 +59,30 @@ git clone --depth 1 https://github.com/badams700/Orchis-kde "$tmp/Orchis-kde"
 (cd "$tmp/Orchis-kde" && ./install.sh)
 rm -rf "$tmp"
 
+# rpm --import https://downloads.1password.com/linux/keys/1password.asc
+# sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://downloads.1password.com/linux/keys/1password.asc" > /etc/yum.repos.d/1password.repo'
+# dnf5 install -y 1password
+
+# Pre-create groups with fixed GIDs so the setgid BrowserSupport binary matches at runtime
+cat >/usr/lib/sysusers.d/onepassword.conf <<'EOF'
+g onepassword 1500
+g onepassword-cli 1600
+EOF
+groupadd -g 1500 onepassword || true
+groupadd -g 1600 onepassword-cli || true
+
+# /opt -> /var/opt must exist for the RPM to unpack
+mkdir -p /var/opt
+
 rpm --import https://downloads.1password.com/linux/keys/1password.asc
 sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://downloads.1password.com/linux/keys/1password.asc" > /etc/yum.repos.d/1password.repo'
 dnf5 install -y 1password
+
+# /var isn't preserved in the final image, so move the payload into /usr
+mv /var/opt/1Password /usr/lib/1Password
+
+# Recreate /opt/1Password at boot
+echo 'L /var/opt/1Password - - - - /usr/lib/1Password' > /usr/lib/tmpfiles.d/1password.conf
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
