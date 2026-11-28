@@ -14,20 +14,20 @@ cp -avf "/ctx/system_files"/. /
 
 # this installs a package from fedora repos
 dnf5 install -y tmux
-rpm --import https://repo.cider.sh/RPM-GPG-KEY
+# rpm --import https://repo.cider.sh/RPM-GPG-KEY
 
-cat > /etc/yum.repos.d/cider.repo << 'EOF'
-[cidercollective]
-name=Cider Collective Repository
-baseurl=https://repo.cider.sh/rpm/RPMS
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.cider.sh/RPM-GPG-KEY
-EOF
+# cat > /etc/yum.repos.d/cider.repo << 'EOF'
+# [cidercollective]
+# name=Cider Collective Repository
+# baseurl=https://repo.cider.sh/rpm/RPMS
+# enabled=1
+# gpgcheck=1
+# gpgkey=https://repo.cider.sh/RPM-GPG-KEY
+# EOF
 
-dnf5 install -y Cider
+# dnf5 install -y Cider
 
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cider.repo
+# sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cider.repo
 
 curl -fsSL https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install.sh | sh
 curl -fsSL https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh
