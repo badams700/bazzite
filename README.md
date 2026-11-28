@@ -3,6 +3,7 @@ Mainly for my personal use with some programs/KDE customizations added.
 
 ### Additions to Image
 Applications: 1Password, Deja-Dup, Cava, Java OpenJDK
+
 KDE Customizations: Papirus icons, kwin-effects-better-blur-dx, darkly, klassy, Orchis theme
 
 ### Rebase to this image from Bazzite (KDE Desktop) or Fedora Kinoite
